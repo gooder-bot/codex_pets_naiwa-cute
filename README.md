@@ -36,7 +36,20 @@
 
 ## 安装
 
-在 PowerShell 中进入本仓库目录，然后运行：
+### 从 GitHub 获取
+
+使用 Git 的方式：
+
+```powershell
+git clone https://github.com/gooder-bot/codex_pets_naiwa-cute.git
+Set-Location .\codex_pets_naiwa-cute
+```
+
+也可以在 GitHub 仓库页面点击 **Code → Download ZIP**，解压后在 PowerShell 中进入解压得到的 `codex_pets_naiwa-cute` 目录。
+
+### 安装宠物
+
+在仓库根目录运行：
 
 ```powershell
 $destination = Join-Path $env:USERPROFILE ".codex\pets\xiaohuangtuan"
@@ -44,7 +57,7 @@ New-Item -ItemType Directory -Force -Path $destination | Out-Null
 Copy-Item .\pet.json, .\spritesheet.webp -Destination $destination -Force
 ```
 
-随后在 Codex 的宠物选择器中选择“可爱奶蛙”。若界面没有立即刷新，请重启 Codex。
+随后重启 Codex，并在宠物选择器中选择“可爱奶蛙”。
 
 ## 当前 Windows 动画节奏补丁
 

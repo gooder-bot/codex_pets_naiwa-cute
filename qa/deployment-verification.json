@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "installedAsarSha256": "D0868BF4C3F72C0AC3A4F380826CB1EC566548A8E037C7D9C0486B3E78AC6908",
+  "officialAsarSha256": "8569B806651BA64C7A0D2FB2E072D4616F37DFE9A057BE6EC829B6FA1C193B10",
+  "candidateEqualsInstalled": true,
+  "asarIntegrity": "pass",
+  "avatarModuleSyntax": "pass",
+  "hoverModuleSyntax": "pass",
+  "launcherSyntax": "pass",
+  "isolatedColdStart": {
+    "durationSeconds": 10,
+    "result": "pass",
+    "portableProcessCountDuringTest": 8,
+    "portableProcessesRemainingAfterCleanup": 0,
+    "officialProcessesWereNotTargeted": true
+  },
+  "runtimePreviewCount": 9,
+  "publishedPreviewCount": 9,
+  "officialStorePackageModified": false
+}

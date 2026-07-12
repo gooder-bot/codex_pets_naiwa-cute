@@ -1,0 +1,79 @@
+{
+  "ok": true,
+  "scope": "all nine standard animation states",
+  "runtime": "Codex 26.707.3748.0 user-space portable mirror",
+  "method": [
+    "read deployed runtime frame durations from patched ASAR",
+    "inspect all row poses in the current contact sheet",
+    "render one GIF per state using exact proposed runtime durations",
+    "preserve physical motion cadence while slowing expression-heavy rows"
+  ],
+  "states": [
+    {
+      "state": "idle",
+      "beforeLoopMs": 6600,
+      "afterLoopMs": 6600,
+      "verdict": "pass-unchanged",
+      "reason": "slow subtle breathing and sway; further slowing would feel unresponsive"
+    },
+    {
+      "state": "running-right",
+      "beforeLoopMs": 1060,
+      "afterLoopMs": 1060,
+      "verdict": "pass-unchanged",
+      "reason": "eight-frame alternating gait reads as a natural cute walk"
+    },
+    {
+      "state": "running-left",
+      "beforeLoopMs": 1060,
+      "afterLoopMs": 1060,
+      "verdict": "pass-unchanged",
+      "reason": "mirrored eight-frame gait matches rightward movement cadence"
+    },
+    {
+      "state": "waving",
+      "beforeLoopMs": 700,
+      "afterLoopMs": 900,
+      "verdict": "adjusted",
+      "reason": "small slowdown makes raise-smile-lower readable without making the greeting heavy"
+    },
+    {
+      "state": "jumping",
+      "beforeLoopMs": 840,
+      "afterLoopMs": 840,
+      "verdict": "pass-unchanged",
+      "reason": "short takeoff and landing need elastic timing; slower playback would look floaty"
+    },
+    {
+      "state": "failed",
+      "beforeLoopMs": 1952,
+      "afterLoopMs": 1952,
+      "verdict": "pass-unchanged",
+      "reason": "eight-frame emotional arc already has adequate readable holds"
+    },
+    {
+      "state": "waiting",
+      "beforeLoopMs": 1616,
+      "afterLoopMs": 2240,
+      "verdict": "adjusted",
+      "reason": "head tilts and clasped-hands poses need longer holds to avoid nervous flicker"
+    },
+    {
+      "state": "running",
+      "beforeLoopMs": 1312,
+      "afterLoopMs": 1920,
+      "verdict": "adjusted",
+      "reason": "task-running row is expressive thinking, not locomotion; slower changes read as focused and cute"
+    },
+    {
+      "state": "review",
+      "beforeLoopMs": 1648,
+      "afterLoopMs": 2400,
+      "verdict": "adjusted",
+      "reason": "large head turns, closed eyes, and smile now have enough screen time to read naturally"
+    }
+  ],
+  "persistentStates": ["failed", "waiting", "running", "review"],
+  "finiteThreeLoopStates": ["running-right", "running-left", "waving", "jumping"],
+  "reducedMotion": "first frame only"
+}

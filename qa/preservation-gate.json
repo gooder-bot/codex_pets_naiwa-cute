@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "baseline_sha256": "BEFF3E50C452608DEF102F6E83D1CB2E4D26FECA373EE7D05A169A268102FF6F",
+  "candidate_sha256": "647DD1FB3A1AA123166B3F40FAB3412AD955C2D43612446CE4641B76477B8028",
+  "allowed_changed_cells": [
+    "r0c0", "r0c1", "r0c2", "r0c3", "r0c4", "r0c5"
+  ],
+  "unexpected_changed_cells": [],
+  "preserved_cells": 82,
+  "neutral_cell_preserved": true,
+  "all_16_direction_cells_preserved": true,
+  "all_non_idle_standard_cells_preserved": true
+}
