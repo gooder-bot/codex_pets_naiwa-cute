@@ -1,91 +1,85 @@
 # 可爱奶蛙 / Cute Naiwa
 
-一只圆润、柔软、爱卖萌的黄色 Codex v2 动态桌面宠物。
+一只圆润、柔软、爱卖萌的黄色 Codex 桌面宠物。自然动作版保留原有形象和图集，重新编排停顿、反应与收尾，让奶蛙安静陪伴，也会轻轻回应你。
 
-![可爱奶蛙动画图集预览](previews/contact-sheet.png)
+![自然动作预览](previews/natural.png)
 
-## 动画特点
+## 自然动作版 3.0
 
-- 原地待机：六帧始终睁着亮晶晶的大眼睛，双脚稳稳落地，通过轻柔呼吸、极小重心回摆、轻微歪头和低位手臂浮动自然卖萌。
-- 左右行走：完整八帧步态，左右腿交替承重，并配合对侧手臂摆动。
-- 跳跃：双脚软弹蓄力、对称起跳、紧凑腾空、圆润下落和双脚缓冲落地，手臂沿自然弧线跟随。
-- 其他状态：挥手、失败、等待、工作、审阅，以及 16 个方向的观察帧。
+- **睁眼陪伴**：轻柔呼吸，闲置约 20 秒后偶尔张望；待机始终睁眼。
+- **认真表达**：工作、等待、完成和受阻先做一次短反应，再保持各自的安静动作，直到任务状态改变。
+- **靠近时回应**：鼠标在身上停留约 280 毫秒，奶蛙先瞥一眼，再依次用软弹一下、挥手、笑着招呼回应。每次只做一个动作，冷却 4.2 秒；快速掠过不会触发。
+- **自然收尾**：跳跃有轻微蓄力和落地回弹；互动结束后回应最新任务状态。拖动时保留左右腿交替的八帧步态，停止后先收脚站稳。
+- **安静模式**：启用“减少动态效果”时，以不同静态姿势表达工作、等待、完成与受阻。
 
-当前“可爱奶蛙（慢动作）”运行副本采用逐状态差异化节奏：
+“笑着招呼”复用现有举手笑脸，并加入轻微身体回弹；本次没有新增捧腹笑画稿。普通鼠标的方向反应只使用宠物能接收到的局部指针位置，不会跟踪整个桌面的鼠标。
 
-| 状态 | 每轮时长 |
-| --- | ---: |
-| idle | 6.60 秒 |
-| running-right / running-left | 1.06 秒 |
-| waving | 0.90 秒 |
-| jumping | 0.84 秒 |
-| failed | 1.952 秒 |
-| waiting | 2.24 秒 |
-| running | 1.92 秒 |
-| review | 2.40 秒 |
+## 获取与安装
 
-`failed`、`waiting`、`running`、`review` 会持续循环到任务状态改变；移动、挥手与跳跃播放三轮后回到待机。
-
-| 向右行走 | 向左行走 |
-| --- | --- |
-| ![向右行走](previews/running-right.gif) | ![向左行走](previews/running-left.gif) |
-
-| 睁眼待机 | 悬停跳跃 |
-| --- | --- |
-| ![睁眼待机](previews/idle.gif) | ![可爱跳跃](previews/jumping.gif) |
-
-## 安装
-
-### 从 GitHub 获取
-
-使用 Git 的方式：
-
-```powershell
+~~~powershell
 git clone https://github.com/gooder-bot/codex_pets_naiwa-cute.git
 Set-Location .\codex_pets_naiwa-cute
-```
+~~~
 
-也可以在 GitHub 仓库页面点击 **Code → Download ZIP**，解压后在 PowerShell 中进入解压得到的 `codex_pets_naiwa-cute` 目录。
+也可以在仓库页面选择 **Code → Download ZIP**，解压后在项目目录打开 PowerShell。
 
-### 安装宠物
+### Windows 自然动作版
 
-在仓库根目录运行：
+当前运行时适配 **Codex Windows 26.917.9434.0**，安装器需要可在命令行运行的 Node.js 18 或更新版本。在项目根目录运行：
 
-```powershell
-$destination = Join-Path $env:USERPROFILE ".codex\pets\xiaohuangtuan"
+~~~powershell
+powershell -ExecutionPolicy Bypass -File .\runtime\Install-Naiwa-Natural.ps1
+~~~
+
+安装器使用本机已安装的 Codex 创建用户空间运行副本，安装奶蛙素材，并生成桌面快捷方式 **Codex - 可爱奶蛙（自然动作）**。运行副本位于 `%LOCALAPPDATA%\CodexPetLab\<版本>-natural\app`，不修改 Microsoft Store 的安装目录；本仓库不分发 Codex 的 ASAR 或其他应用文件。
+
+安装完成后，**完全退出当前 Codex，再从新快捷方式启动**，在宠物选择器中选择“可爱奶蛙”。安装器不会自动关闭或重启正在使用的 Codex。自然动作需要从这个快捷方式启动；Codex 升级后需要重新核对适配版本。
+
+### 仅安装宠物素材
+
+如需使用客户端自身的动画规则，可将素材放入自定义宠物目录：
+
+~~~powershell
+$petRoot = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME "pets" } else { Join-Path $env:USERPROFILE ".codex\pets" }
+$destination = Join-Path $petRoot "xiaohuangtuan"
 New-Item -ItemType Directory -Force -Path $destination | Out-Null
 Copy-Item .\pet.json, .\spritesheet.webp -Destination $destination -Force
-```
+~~~
 
-随后重启 Codex，并在宠物选择器中选择“可爱奶蛙”。
+然后刷新宠物列表或重启 Codex，选择“可爱奶蛙”。**只复制图集不会启用自然动作的悬停、冷却、状态持续和收尾逻辑**；其他平台的触发方式以其客户端为准。
 
-## 当前 Windows 动画节奏补丁
+## 互动预览
 
-`runtime/` 保存本机当前版本使用的运行时补丁源文件、启动器和真实时长预览脚本。它针对 Codex Windows `26.707.3748.0`，用于保留慢速状态循环、鼠标悬停跳跃后回到待机等行为；升级 Codex 后需要重新核对补丁目标和哈希，不能直接假定兼容。
+安装前也可以体验自然动作。在项目根目录使用 Python 3 启动本地预览：
 
-桌面上的 `Codex 可爱奶蛙（慢动作）.lnk` 已指向当前经过验证的用户空间运行副本。运行时不会修改 Microsoft Store 安装目录。
+~~~powershell
+python -m http.server 8765 --bind 127.0.0.1
+~~~
 
-## 图集规格
+浏览器打开 [自然动作对比预览](http://127.0.0.1:8765/previews/natural.html)。预览右侧直接使用安装版同一套动作控制器，可切换任务、悬停、模拟拖动与启用减少动态效果；它不连接真实任务，也不移动桌面窗口。结束预览时，在启动服务的终端按 `Ctrl+C`。
 
-- Codex `spriteVersionNumber: 2`
-- WebP RGBA 图集：`1536 × 2288`
-- 布局：`8 列 × 11 行`
-- 单格尺寸：`192 × 208`
-- 宠物 ID：`xiaohuangtuan`
+自然动作以此互动预览为准。仓库旧版 GIF、`qa/runtime-speed-review.json` 与 `qa/deployment-verification.json` 保留历史慢动作记录，不代表 3.0 的完整交互行为或当前部署结果。
 
-图集包含全部 9 种标准动画状态与 16 个观察方向。具体触发方式由 Codex 客户端的版本和平台决定；方向观察帧在部分 Windows 版本中可能尚无可达事件源。
+## 图集与实现
 
-逐行动画、功能及当前 Windows 触发方式见 [`ANIMATION_ROWS.md`](ANIMATION_ROWS.md)。
+| 项目 | 规格 |
+| --- | --- |
+| 宠物 ID | `xiaohuangtuan` |
+| Codex 图集版本 | `spriteVersionNumber: 2` |
+| 格式与尺寸 | WebP RGBA，`1536 × 2288` |
+| 排列 | `8 列 × 11 行`，单格 `192 × 208` |
+| 内容 | 9 种标准状态、16 个观察方向 |
 
-![16 向观察帧](previews/look-directions.png)
+逐行动作及节奏见 [ANIMATION_ROWS.md](ANIMATION_ROWS.md)。[motion-profile.mjs](runtime/motion-profile.mjs) 定义动作帧和时长，[naiwa-motion.mjs](runtime/naiwa-motion.mjs) 负责状态、悬停与恢复；自然动作版不改动 `spritesheet.webp`。
 
-## 质量检查
+`runtime/patch_codex_pet_runtime.js` 和 `runtime/Launch-Codex-Naiwa-Cute.ps1` 保留旧版 `26.707.3748.0` 慢动作方案，供历史参考，不用于安装当前自然动作版。
 
-发布图集已通过尺寸、透明通道、标准帧占用、行走循环、全睁眼待机、双脚软弹跳跃以及非目标格逐像素保留检查。去除本机路径后的结果见 [`qa/validation-summary.json`](qa/validation-summary.json)，改动范围见 [`qa/preservation-gate.json`](qa/preservation-gate.json)。逐状态速度结论见 [`qa/runtime-speed-review.json`](qa/runtime-speed-review.json)，本机部署验证见 [`qa/deployment-verification.json`](qa/deployment-verification.json)。
+自然动作的检查记录见 [natural-motion.json](qa/natural-motion.json)。原图集检查记录见 [validation-summary.json](qa/validation-summary.json) 与 [preservation-gate.json](qa/preservation-gate.json)；旧记录不能代替新运行时的兼容性检查。
 
-本宠物在仓库所有者提供的视觉参考基础上，经 AI 辅助创作和人工筛选、组装与动作校正完成。
+开发验证可运行 `node --test runtime/naiwa-motion.test.mjs`。安装后运行 `node runtime/verify-installed-runtime.cjs <已安装副本的 app.asar 路径>`，可检查实际客户端模块中的宠物识别、状态更新、清理与原有宠物行为。
+
+本宠物在仓库所有者提供的视觉参考基础上，经 AI 辅助创作和人工筛选、组装与动作校正完成。本次更新复用这些已有素材。
 
 ## 许可证
 
 除非文件中另有说明，本仓库内容以 [MIT License](LICENSE) 发布。
-# codex_pets_naiwa-cute

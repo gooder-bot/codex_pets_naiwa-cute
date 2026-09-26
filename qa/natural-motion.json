@@ -1,0 +1,40 @@
+{
+  "motionVersion": "3.0.0",
+  "date": "2026-09-26",
+  "clientPackageVersion": "26.917.9434.0",
+  "petManifestId": "xiaohuangtuan",
+  "rendererPetId": "custom:xiaohuangtuan",
+  "spriteChanged": false,
+  "spriteSha256": "647DD1FB3A1AA123166B3F40FAB3412AD955C2D43612446CE4641B76477B8028",
+  "behaviorTests": {
+    "command": "node --test runtime/naiwa-motion.test.mjs",
+    "passed": 6,
+    "failed": 0,
+    "coverage": [
+      "brief pointer pass-through does not greet",
+      "one complete greeting lands and resumes the latest task",
+      "task introductions settle into quiet loops",
+      "drag cancels hover and settles before returning to task",
+      "reduced motion cancels animation and hover timers",
+      "unmount cleans timers/listeners and restores styling"
+    ]
+  },
+  "visualPreview": {
+    "page": "previews/natural.html",
+    "screenshot": "previews/natural.png",
+    "usesProductionMotionModule": true,
+    "observed": ["atlas rendering", "work intro to quiet pose", "held hover responds once and returns to work"]
+  },
+  "integration": {
+    "method": "separate user-space application copy with patched ASAR",
+    "rendererModule": "webview/assets/app-initial-fc9a33fdda88.js",
+    "mascotModule": "webview/assets/avatar-mascot-button-3d8ce648f7c4.js",
+    "addedModules": ["webview/assets/naiwa-motion.mjs", "webview/assets/motion-profile.mjs"],
+    "patchedModulesSyntaxChecked": true,
+    "actualInstalledRendererHarnessPassed": true,
+    "harnessCoverage": ["custom-prefixed pet identity", "mount/update/dispose", "reduced-motion remount", "switching pets", "original hover and frame timers for other pets"],
+    "sourceAsarModified": false,
+    "liveDesktopPetVerified": false,
+    "activation": "Exit the current client and launch the installed natural-motion shortcut."
+  }
+}
